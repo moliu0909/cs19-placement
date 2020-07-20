@@ -164,10 +164,12 @@
 
 ;words-to-sentence :: List-of-strings -> String
 ;concatenate strings with a space between every pair of words
+
+
 (define (words-to-sentence alos)
   (cond
     [(empty? alos) ""]
-    [(string-whitespace? (first alos)) (words-to-sentence (rest alos))]
+    [(equal? (first alos) "") (words-to-sentence (rest alos))]
     [(empty? (rest alos)) (string-append (first alos) "")]
     [else (string-append (first alos) " " (words-to-sentence (rest alos)))]))
 
@@ -184,8 +186,8 @@
 
 ;white space 
 (check-expect
- (words-to-sentence (list " " " " " " ))
- "")
+ (words-to-sentence (list " " " "))
+ "   ")
 
 ;capital & lower case
 (check-expect
@@ -197,5 +199,10 @@
  (words-to-sentence (list "m3" "y0ü" "ûs" "brownengineering"))
  "m3 y0ü ûs brownengineering")
 
-;---------------------------------------------------------------------------
+;mixed list
+(check-expect
+ (words-to-sentence (list " " "me" "you" ""))
+ "  me you ") ;STOP! Even though "" is technically a "word", should there be a space after "you"?
+
+;----------------------------------------------------------------------------
 
