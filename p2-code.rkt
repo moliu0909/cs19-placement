@@ -59,7 +59,7 @@
  (overlay-all (list empty-image empty-image)) ;STOP! this doesn't work 
  (square 10 "solid" "white")) 
 
-;single image in list 
+;single image list 
 (check-expect
  (overlay-all (list (circle 5 "solid" "blue")))
  (place-image
@@ -67,7 +67,7 @@
   5 5 
   (square 10 "solid" "white")))
 
-;multiple images in list
+;multiple images list
 (check-expect
  (overlay-all (list (circle 5 "solid" "blue") (square 3 "solid" "yellow")))
  (place-images
@@ -77,5 +77,48 @@
 
 ;---------------------------------------------------------------------------
 
+;bar-graph :: List-of-numbers -> Image
+;generate a bar graph in which the numbers in the list represent bar heights
 
+; A List-of-numbers is one of: 
+; – '()
+; – (cons NonNegativeNumber List-of-numbers)
+
+(define (bar-graph alon)
+  (cond
+    [(empty? alon) (square 1 "solid" "white")]
+    [else (beside/align "bottom" (rectangle 10 (first alon) "solid" "black")
+          (bar-graph (rest alon)))]))
  
+;empty list
+(check-expect
+ (bar-graph '())
+ (square 1 "solid" "white"))
+
+;list with 0
+(check-expect
+ (bar-graph (list 0))
+ (beside/align "bottom"
+               (rectangle 10 0 "solid" "black") ;STOP! what's this shape? 
+               (square 1 "solid" "white")))
+
+;single number list
+(check-expect
+ (bar-graph (list 1))
+ (beside/align "bottom"
+               (rectangle 10 1 "solid" "black")
+               (square 1 "solid" "white")))
+
+;multiple number list
+(check-expect
+ (bar-graph (list 3 7 12 6))
+ (beside/align "bottom"
+               (rectangle 10 3 "solid" "black")
+               (rectangle 10 7 "solid" "black")
+               (rectangle 10 12 "solid" "black")
+               (rectangle 10 6 "solid" "black")
+               (square 1 "solid" "white")))
+
+;---------------------------------------------------------------------------
+
+
