@@ -69,7 +69,7 @@
  (member? "Flatt" (cons "brian" (cons "Flatt" '())))
  #true)
 
-(check-expect
+(check-expect 
  (contains-flatt? (cons "A" (cons "Flatt" (cons "C" '()))))
   #true)
 
