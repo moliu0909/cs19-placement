@@ -51,7 +51,7 @@
               #true)
 (check-expect
   (contains-flatt-2?
-    (cons "A" (cons "Flatt" (cons "C" '()))))
+    (cons "A" (cons "Flatt" (cons "C" '())))) 
   #true)
 
 (check-expect
