@@ -165,7 +165,7 @@
 (define (words-to-sentence alos)
   (cond
     [(empty? alos) ""]
-    [(equal? (first alos) "") (words-to-sentence (rest alos))]
+    [(string=? (first alos) "") (words-to-sentence (rest alos))]
     [(empty? (rest alos)) (string-append (first alos) "")]
     [else (string-append (first alos) " " (words-to-sentence (rest alos)))]))
 
