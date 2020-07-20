@@ -50,7 +50,7 @@
     [else (place-image (first aloi) 5 5 (overlay-all (rest aloi)))]))
 
 ;overlay-all tests
-;empty list
+;base case
 (check-expect
  (overlay-all '())
  (square 10 "solid" "white"))
@@ -83,10 +83,6 @@
 ;bar-graph :: List-of-numbers -> Image
 ;generate a bar graph in which the numbers in the list represent bar heights
 
-; A List-of-numbers is one of: 
-; – '()
-; – (cons NonNegativeNumber List-of-numbers)
-
 (define (bar-graph alon)
   (cond
     [(empty? alon) (square 1 "solid" "white")]
@@ -95,7 +91,7 @@
           (bar-graph (rest alon)))]))
 
 ;bar-graph tests
-;empty list
+;base case
 (check-expect
  (bar-graph '())
  (square 1 "solid" "white"))
@@ -135,7 +131,7 @@
     [else (is-in? any (rest aloa))]))
 
 ;is-in? tests
-;value in empty list
+;base case
 (check-expect (is-in? "me" '()) #false)
 
 ;string value, empty string
@@ -174,7 +170,7 @@
     [else (string-append (first alos) " " (words-to-sentence (rest alos)))]))
 
 ;words-to-sentence tests
-;empty list
+;base case
 (check-expect
  (words-to-sentence '())
  "")
@@ -199,7 +195,12 @@
  (words-to-sentence (list "m3" "y0ü" "ûs" "brownengineering"))
  "m3 y0ü ûs brownengineering")
 
-;mixed list
+;empty string in mixed list
+(check-expect
+ (words-to-sentence (list "m3" "" "brownengineering"))
+ "m3 brownengineering")
+
+;empty string at end
 (check-expect
  (words-to-sentence (list " " "me" "you" ""))
  "  me you ") ;STOP! Even though "" is technically a "word", should there be a space after "you"?
