@@ -156,6 +156,9 @@
 (check-expect (is-in? (list "me" 283 "#2d")
                       (list "you" "us" (list "me" 283 "#2d"))) #true)
 
+;type distinction
+(check-expect (is-in? 35 (list "thirtyfive")) #false)
+
 ;---------------------------------------------------------------------------
 
 ;words-to-sentence :: List-of-strings -> String
