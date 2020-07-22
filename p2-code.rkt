@@ -202,7 +202,7 @@
 ;empty string at end
 (check-expect
  (words-to-sentence (list " " "me" "you" ""))
- "  me you ") ;STOP! Even though "" is technically a "word", should there be a space after "you"?
+ "  me you ")
 
 ;----------------------------------------------------------------------------
 
