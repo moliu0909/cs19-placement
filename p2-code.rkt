@@ -47,7 +47,7 @@
 (define (overlay-all aloi)
   (cond
     [(empty? aloi) (square 10 "solid" "white")]
-    [else (place-image (first aloi) 5 5 (overlay-all (rest aloi)))]))
+    [else (place-image (first aloi) 5 5 (overlay-all (rest aloi)))])) 
 
 ;overlay-all tests
 ;base case
@@ -57,7 +57,7 @@
 
 ;empty image
 (check-expect
- (overlay-all (list empty-image empty-image)) ;STOP! this doesn't work 
+ (overlay-all (list empty-image empty-image)) 
  (square 10 "solid" "white")) 
 
 ;single image list 
@@ -100,7 +100,7 @@
 (check-expect
  (bar-graph (list 0))
  (beside/align "bottom"
-               (rectangle 10 0 "solid" "black") ;STOP! what's this shape? 
+               (rectangle 10 0 "solid" "black") 
                (square 1 "solid" "white")))
 
 ;single number list
