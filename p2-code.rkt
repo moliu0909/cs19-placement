@@ -165,7 +165,6 @@
 (define (words-to-sentence alos)
   (cond
     [(empty? alos) ""]
-    [(string=? (first alos) "") (words-to-sentence (rest alos))]
     [(empty? (rest alos)) (string-append (first alos) "")]
     [else (string-append (first alos) " " (words-to-sentence (rest alos)))]))
 
@@ -178,7 +177,7 @@
 ;empty string
 (check-expect
  (words-to-sentence (list "" "" "" ""))
- "")
+ "   ")
 
 ;white space 
 (check-expect
@@ -198,7 +197,7 @@
 ;empty string in mixed list
 (check-expect
  (words-to-sentence (list "m3" "" "brownengineering"))
- "m3 brownengineering")
+ "m3  brownengineering")
 
 ;empty string at end
 (check-expect
